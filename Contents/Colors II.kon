@@ -17,21 +17,13 @@
 	</settings>
 
 	<about-box>
-		<image>Resources/About.png</image>
-		<about-text font="Helvetica" size="14" style="Bold" hOffset="81" vOffset="125"
-					color="#000000" data="Colors"/>
-		<about-text font="Helvetica" size="12" style="Regular" hOffset="81" vOffset="140"
-					color="#000000" data="Harry Whitfield" url="mailto:g6auc@arrl.net"/>
-		<about-text font="Helvetica" size="10" style="Regular" hOffset="81" vOffset="165"
-					color="#000000" data="Graphics by Dean Beedell" url="mailto:Dean.Beedell@lightquick.co.uk"/>
-		<about-text font="Helvetica" size="10" style="Regular" hOffset="81" vOffset="180"
-					color="#000000" data="About Box by Ricky Romero"/>
-		<about-text font="Helvetica" size="10" style="Bold" hOffset="81" vOffset="205"
+		<image>Resources/images/ColourIIAboutus.png</image>
+
+		<about-text font="times new roman" size="10" style="Bold" hOffset="115" vOffset="210"
 					color="#000000" data="Version"/>
-		<about-version font="Helvetica" style="Bold" size="10" hOffset="123" vOffset="205"
+		<about-version font="times new roman" style="Bold" size="10" hOffset="157" vOffset="210"
 					   color="#000000"/>
-		<about-text font="Helvetica" size="10" style="regular" hOffset="155" vOffset="205"
-					color="#565b5f" data="© 2004-2011 Harry Whitfield"/>
+
 	</about-box>
 
 	<window visible="false" vOffset="288" name="mainWindow" alignment="left" width="250" hOffset="504" title="Colors" level="normal" height="138" shadow="false">
