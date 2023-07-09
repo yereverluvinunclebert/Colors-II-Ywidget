@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget minimumVersion="4.5">
+	<!--
+	Colors Widget - version 2.0
+	2 August, 2011
+	Copyright 2004-2011 Harry Whitfield
+	mailto:g6auc@arrl.net
+
+	Concept suggested by the use of the Color Picker in the Offworld Time Widget
+	by loki der quaeler / weltschmerz digital media labs
+
+	Former graphics by Álvaro Luz <alvaroluz@terra.com.br>
+
+	Steampunk graphics by Dean Beedell <Dean.Beedell@lightquick.co.uk>
+	-->
+
+	<settings>
+		<setting name="debug" value="off"/>
+	</settings>
+
+	<about-box>
+		<image>Resources/About.png</image>
+		<about-text font="Helvetica" size="14" style="Bold" hOffset="81" vOffset="125"
+					color="#000000" data="Colors"/>
+		<about-text font="Helvetica" size="12" style="Regular" hOffset="81" vOffset="140"
+					color="#000000" data="Harry Whitfield" url="mailto:g6auc@arrl.net"/>
+		<about-text font="Helvetica" size="10" style="Regular" hOffset="81" vOffset="165"
+					color="#000000" data="Graphics by Dean Beedell" url="mailto:Dean.Beedell@lightquick.co.uk"/>
+		<about-text font="Helvetica" size="10" style="Regular" hOffset="81" vOffset="180"
+					color="#000000" data="About Box by Ricky Romero"/>
+		<about-text font="Helvetica" size="10" style="Bold" hOffset="81" vOffset="205"
+					color="#000000" data="Version"/>
+		<about-version font="Helvetica" style="Bold" size="10" hOffset="123" vOffset="205"
+					   color="#000000"/>
+		<about-text font="Helvetica" size="10" style="regular" hOffset="155" vOffset="205"
+					color="#565b5f" data="© 2004-2011 Harry Whitfield"/>
+	</about-box>
+
+	<window visible="false" vOffset="288" name="main_window" alignment="left" width="250" hOffset="504" title="Colors" level="normal" height="138" shadow="false">
+		<image zOrder="1" opacity="0" vOffset="37" name="badge" alignment="left" src="Resources/Images/badge.png" width="120" hOffset="81" height="42"/>
+		<image opacity="255" name="verticalBar" src="Resources/Images/verticalBar.png" hOffset="41 "/>
+		<image opacity="255" vOffset="84 " name="slider" src="Resources/Images/slider.png" hOffset="98 "/>
+		<image opacity="255" vOffset="53 " name="screwshaft" src="Resources/Images/screwshaft.png" hOffset="15 "/>
+		<image opacity="255" vOffset="15 " name="body" src="Resources/Images/body.png" hOffset="36 "/>
+		<image opacity="0" vOffset="49" name="restartToggle" src="Resources/Images/restartToggle.png" hOffset="198">
+			<tooltip>Click to dismiss.
+Alt-click to copy the color to the clipboard.</tooltip>
+			<onMouseDown>
+				<![CDATA[
+				if (system.event.altKey) {
+					system.clipboard = text1.data;
+				} else {
+					text1.opacity = 0;
+					text1.bgOpacity = 0;
+					swatch.opacity = 0;
+					badge.opacity = 0;
+					restartToggle.opacity = 0;
+				}
+				]]>
+			</onMouseDown>
+		</image>
+		<image zOrder="2" opacity="0" vOffset="51" name="swatch" alignment="left" src="Resources/Images/swatch.png" width="15" hOffset="103" height="15" colorize="#FFFFFF">
+			<tooltip>Click to dismiss.
+Alt-click to copy the color to the clipboard.</tooltip>
+			<onMouseUp>
+				<![CDATA[
+				if (system.event.altKey) {
+					system.clipboard = text1.data;
+				} else {
+					text1.opacity = 0;
+					text1.bgOpacity = 0;
+					swatch.opacity = 0;
+					badge.opacity = 0;
+					restartToggle.opacity = 0;
+				}
+				]]>
+			</onMouseUp>
+		</image>
+		<image zOrder="3" opacity="255" vOffset="40" name="wheel" alignment="left" src="Resources/Images/colors.png" width="40" hOffset="61" height="40">
+			<tooltip>Click to open the color picker. Alt-click to set a color in hexadecimal.</tooltip>
+			<onMouseUp>
+				<![CDATA[
+				mouseUp();
+				]]>
+			</onMouseUp>
+		</image>
+		<textarea zOrder="2" scrollbar="false" font="Geneva" opacity="0" color="#FFFFFF" name="text1" bgColor="#000000" alignment="left" width="72" hOffset="121" data="#FFFFFF" height="17" editable="false" bgOpacity="0" size="13"/>
+	</window>
+
+	<action trigger="onLoad">
+		<![CDATA[
+		include("vitality.js");
+		include("handleExternalCall.js");
+		include("main.js");
+		]]>
+	</action>
+
+	<action trigger="onPreferencesChanged">updateText();</action>
+
+	<preference description="Choose the text font." name="textFontPref" title="Font Name:" defaultValue="Geneva" type="font"/>
+	<preference ticks="6" minLength="9" description="Choose the size of the text font." name="textSizePref" maxLength="14" title="Font Size:" defaultValue="13" type="slider">
+		<tickLabel>9</tickLabel>
+		<tickLabel>10</tickLabel>
+		<tickLabel>11</tickLabel>
+		<tickLabel>12</tickLabel>
+		<tickLabel>13</tickLabel>
+		<tickLabel>14</tickLabel>
+	</preference>
+	<preference description="Choose the text color." name="textColorPref" title="Text Color:" defaultValue="#FFFFFF" type="color"/>
+	<preference description="Choose the text background color." name="textBgColorPref" title="Text Background Color:" defaultValue="#000000" type="color"/>
+	<preference description="Check this box to enable the chosen background color." name="enableBgColorPref" title="Enable Background Color" defaultValue="0" type="checkbox"/>
+	<preference description="Check this box if you wish to be able to copy (and paste) the color code." name="editablePref" title="Editable Text" defaultValue="0" type="checkbox"/>
+	<preference description="Check this box for upper case hexadecimal output." name="upperCasePref" title="Upper Case Hexadecimal Output" defaultValue="0" type="checkbox"/>
+</widget>
