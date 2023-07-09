@@ -10,7 +10,7 @@
  New steampunk graphics by Dean Beedell
  */
 
-/*global main_window, text1, swatch, badge, restartToggle, buildVitality */
+/*global mainWindow , text1, swatch, badge, restartToggle, buildVitality */
 
 /*properties altKey, bgColor, bgOpacity, color, colorize, data, 
  defaultValue, description, editable, editablePref, enableBgColorPref, 
@@ -18,6 +18,10 @@
  textBgColorPref, textColorPref, textFontPref, textSizePref, title, 
  toLowerCase, toUpperCase, type, upperCasePref, vOffset, value, visible
  */
+ 
+include("vitality.js");
+include("functions.js");    
+include("Resources/Licence/licence.js");
 
 // The following flags control printing in the debug console window
 var eFlag = true; // show general debug information
@@ -163,6 +167,81 @@ function updateText() {
     }
 }
 
-updateText();
 
-main_window.visible = true;
+
+var debugFlg = "";
+//===========================================
+// this function runs on startup
+//===========================================
+function startup() {
+    debugFlg = preferences.debugflgPref.value;
+    if (debugFlg === "1") {
+        preferences.imageEditPref.hidden=false;
+        preferences.imageCmdPref.hidden=false;
+    } else {
+        preferences.imageEditPref.hidden=true;
+        preferences.imageCmdPref.hidden=true;
+    }
+
+    updateText();
+
+    mainWindow.visible = true;
+    
+    createLicence(mainWindow);
+    
+    setmenu();
+}
+
+
+
+//===============================================================
+// this function defines the keyboard events captured
+//===============================================================
+mainWindow.onKeyDown = function(event) {
+                if (system.event.keyCode==116) {
+                    print("pressing "+system.event.keyCode);
+                    reloadWidget();
+                }
+   };
+//=====================
+//End function
+//=====================
+
+
+restartToggle.onMouseDown = function(event) {
+    if (system.event.altKey) {
+        system.clipboard = text1.data;
+    } else {
+        text1.opacity = 0;
+        text1.bgOpacity = 0;
+        swatch.opacity = 0;
+        badge.opacity = 0;
+        restartToggle.opacity = 0;
+    }
+};
+//=====================
+//End function
+//=====================
+
+swatch.onMouseUp= function(event) {
+    if (system.event.altKey) {
+        system.clipboard = text1.data;
+    } else {
+        text1.opacity = 0;
+        text1.bgOpacity = 0;
+        swatch.opacity = 0;
+        badge.opacity = 0;
+        restartToggle.opacity = 0;
+    }
+};
+//=====================
+//End function
+//=====================
+
+
+wheel.onMouseUp= function(event) {
+    mouseUp();
+};
+//=====================
+//End function
+//=====================

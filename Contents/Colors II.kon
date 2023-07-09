@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget minimumVersion="4.5">
+<widget minimumVersion="4.0">
 	<!--
 	Colors Widget - version 2.0
 	2 August, 2011
@@ -8,8 +8,6 @@
 
 	Concept suggested by the use of the Color Picker in the Offworld Time Widget
 	by loki der quaeler / weltschmerz digital media labs
-
-	Former graphics by Álvaro Luz <alvaroluz@terra.com.br>
 
 	Steampunk graphics by Dean Beedell <Dean.Beedell@lightquick.co.uk>
 	-->
@@ -36,7 +34,7 @@
 					color="#565b5f" data="© 2004-2011 Harry Whitfield"/>
 	</about-box>
 
-	<window visible="false" vOffset="288" name="main_window" alignment="left" width="250" hOffset="504" title="Colors" level="normal" height="138" shadow="false">
+	<window visible="false" vOffset="288" name="mainWindow" alignment="left" width="250" hOffset="504" title="Colors" level="normal" height="138" shadow="false">
 		<image zOrder="1" opacity="0" vOffset="37" name="badge" alignment="left" src="Resources/Images/badge.png" width="120" hOffset="81" height="42"/>
 		<image opacity="255" name="verticalBar" src="Resources/Images/verticalBar.png" hOffset="41 "/>
 		<image opacity="255" vOffset="84 " name="slider" src="Resources/Images/slider.png" hOffset="98 "/>
@@ -45,57 +43,39 @@
 		<image opacity="0" vOffset="49" name="restartToggle" src="Resources/Images/restartToggle.png" hOffset="198">
 			<tooltip>Click to dismiss.
 Alt-click to copy the color to the clipboard.</tooltip>
-			<onMouseDown>
-				<![CDATA[
-				if (system.event.altKey) {
-					system.clipboard = text1.data;
-				} else {
-					text1.opacity = 0;
-					text1.bgOpacity = 0;
-					swatch.opacity = 0;
-					badge.opacity = 0;
-					restartToggle.opacity = 0;
-				}
-				]]>
-			</onMouseDown>
 		</image>
 		<image zOrder="2" opacity="0" vOffset="51" name="swatch" alignment="left" src="Resources/Images/swatch.png" width="15" hOffset="103" height="15" colorize="#FFFFFF">
 			<tooltip>Click to dismiss.
 Alt-click to copy the color to the clipboard.</tooltip>
-			<onMouseUp>
-				<![CDATA[
-				if (system.event.altKey) {
-					system.clipboard = text1.data;
-				} else {
-					text1.opacity = 0;
-					text1.bgOpacity = 0;
-					swatch.opacity = 0;
-					badge.opacity = 0;
-					restartToggle.opacity = 0;
-				}
-				]]>
-			</onMouseUp>
 		</image>
 		<image zOrder="3" opacity="255" vOffset="40" name="wheel" alignment="left" src="Resources/Images/colors.png" width="40" hOffset="61" height="40">
 			<tooltip>Click to open the color picker. Alt-click to set a color in hexadecimal.</tooltip>
-			<onMouseUp>
-				<![CDATA[
-				mouseUp();
-				]]>
-			</onMouseUp>
 		</image>
 		<textarea zOrder="2" scrollbar="false" font="Geneva" opacity="0" color="#FFFFFF" name="text1" bgColor="#000000" alignment="left" width="72" hOffset="121" data="#FFFFFF" height="17" editable="false" bgOpacity="0" size="13"/>
 	</window>
 
 	<action trigger="onLoad">
 		<![CDATA[
-		include("vitality.js");
-		include("handleExternalCall.js");
-		include("main.js");
+		include("main.js"); 
+		startup();
 		]]>
 	</action>
 
 	<action trigger="onPreferencesChanged">updateText();</action>
+
+  <prefGroup name="development" order="8" icon="Resources/images/development-icon.png" title="Development"/>
+  <preference hidden="false" description="Turning on the debugging will provide extra information in the debug window. To obtain the debug window press SHIFT+CTRL simultaneously whilst right clicking on the Yahoo widget systray icon, then select debug from the drop down menu. You will need to restart the widget properly rather than doing a simple restart for debugging information to appear." name="debugflgPref" group="development" title="Debug:" defaultValue="1" type="popup">
+      <option>Debug OFF</option>
+      <optionValue>0</optionValue>
+      <option>Debug ON</option>
+      <optionValue>1</optionValue>
+  </preference>
+  <preference hidden="false" description="Default command to run when the gauge receives a double-click. %SystemRoot%/system32/perfmon.exe" name="imageCmdPref" group="development" title="Double-Click command" defaultValue="%SystemRoot%/system32/perfmon.exe" type="text"/>
+  <preference hidden="false" description="Development ONLY: Enter your editor path here along with any command line switches required to open this widget in the editor. This function only operates if the widget has been unpacked and DEBUG is ON. " name="imageEditPref" group="development" title="Default Editor:" defaultValue="" type="text"/>
+
+
+  <preference hidden="true" group="configuration" description="Check this box if you don't want to see the Licence Conditions again." name="licenceHide" title="Don't Show Licence Again" defaultValue="0" type="checkbox"/>
+
 
 	<preference description="Choose the text font." name="textFontPref" title="Font Name:" defaultValue="Geneva" type="font"/>
 	<preference ticks="6" minLength="9" description="Choose the size of the text font." name="textSizePref" maxLength="14" title="Font Size:" defaultValue="13" type="slider">
