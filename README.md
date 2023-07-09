@@ -4,8 +4,6 @@ Colours II Yahoo widget, written in Javascript and XML for the Yahoo
 Widget (Konfabulator) Engine. Created for XP, Vista, Win7, 8, 10+ as well as the 
 Apple Mac.
 
-This widget is being overhauled now. Do not download.
-
 This Colours widget is an attractive steampunk Yahoo widget for your desktop. 
 It is a simple colour picker that converts a colour wheel selection to a 
 hexidecimal value so that you can use that colour in your program. Functional 
